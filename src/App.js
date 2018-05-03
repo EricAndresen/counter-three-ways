@@ -1,12 +1,9 @@
 import React from 'react';
-import Counter from "./Counter";
 import './App.css';
 import CounterRedux from './CounterRedux';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-
-// START Redux only code
 
 const initialState = {
   count: 0
@@ -14,10 +11,11 @@ const initialState = {
 
 // reducer manages changes to store
 const reducer = (state = initialState, action) => {
-  // use switch statement to take commands from inside components
+  // use switch statement to take commands from inside components via dispatch()
   switch (action.type) {
     case 'INCREMENT':
       // return new object with old state + modification (never mutates state!)
+      // returned component is then merged with state via dispatch (see component)
       return {
         count: state.count + 1
       };
@@ -28,23 +26,14 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-  state
 }
   // store is a singe source of truth lives in root component, and is passed down via Provider and connect() (in component export)
 const store = createStore(reducer)
 
-// END Redux only code
-
 const App = () => (
-  <div>
-    {/* With only React */}
-    <Counter />
-
-    {/* With React + Redux */}
-    <Provider store = {store}>
-      <CounterRedux />
-    </Provider>
-  </div>
+  <Provider store = {store}>
+    <CounterRedux />
+  </Provider>
 )
 
 export default App;
