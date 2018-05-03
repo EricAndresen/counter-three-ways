@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 
 class Counter extends React.Component {
     increment = () => {
-
+        // dispatch is injected by connect() in the export statement below
+        // dispatch calls the reducer and passes the result to be merged with the store
+        this.props.dispatch({ type: 'INCREMENT'})
     }
     
     decrement = () => {
-
+        this.props.dispatch({ type: 'DECREMENT'})
     }
 
     render() {
