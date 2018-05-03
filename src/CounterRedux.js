@@ -25,7 +25,6 @@ class Counter extends React.Component {
             </div>
         )    
     }
-
 }
 
 // Keys in this become the props to the component called as the second argument to connect
